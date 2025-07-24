@@ -4,6 +4,8 @@ import os
 import click
 import pandas as pd
 from datetime import datetime
+
+from skincancer_vit.utils import get_torch_device
 from skincancer_vit.model import SkinCancerViTModel
 
 
@@ -174,7 +176,7 @@ def main(model_handle_or_path: str, output_csv_path: str, num_samples: int | Non
     """
     print("Starting skin cancer inference script...")
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = get_torch_device()
     print(f"Using device: {device}")
 
     try:
